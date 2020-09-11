@@ -19,6 +19,7 @@ class RegisterForm extends Component {
   state = {
     error: null,
     message: null,
+    ok: null,
     url: "/signup",
   };
 
@@ -46,22 +47,19 @@ class RegisterForm extends Component {
 
   handleErrors = async (res) => {
     const data = await res.json();
+
     if (res.status === 404 || res.status === 422) {
       this.setState({
         error: true,
         message: "Ocurrió un error al crear al usuario.",
       });
-    } else if (res.status === 200) {
+    } else if (res.status === 200 || res.status === 201) {
       this.setState({
         ok: true,
-        error: false,
+        error: null,
         message: "Se ha creado al usuario.",
       });
     } else {
-      this.setState({
-        error: true,
-        message: "Ocurrió un error al crear al usuario.",
-      });
     }
   };
 
@@ -90,12 +88,15 @@ class RegisterForm extends Component {
         >
           {({ values, isSubmitting }) => (
             <Form>
-              {this.state.error && (
+              {this.state.error === true ? (
                 <Alert color="warning">{this.state.message}</Alert>
+              ) : (
+                ""
               )}
               {this.state.ok && (
                 <Alert color="primary">{this.state.message}</Alert>
               )}
+
               <FormTextName />
 
               <FormTextEmail />
