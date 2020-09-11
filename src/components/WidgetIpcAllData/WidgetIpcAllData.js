@@ -1,12 +1,11 @@
 import React from "react";
-
 import { GraphContainer } from "../../styles/Graphs";
 
-import GraphIpc from "../GraphIpc";
+import GraphIpcWithoutFilters from "../GraphIpcWithoutFilters";
 import useFetch from "../../Hooks/useFetch";
 import Loader from "../Loader";
 
-const WidgetIpc = (props) => {
+const WidgetIpcAllData = () => {
   const { response, errors, mesages, loading } = useFetch(
     "/cc4c350b-1f11-42a0-a1aa-f8593eafeb1e"
   );
@@ -17,16 +16,14 @@ const WidgetIpc = (props) => {
   if (response === null) {
     return null;
   }
-
   if (errors) {
     return <div>{mesages}</div>;
   }
-
   return (
     <GraphContainer>
-      <GraphIpc data={response} title="Precio" color="#000" />
+      <GraphIpcWithoutFilters data={response} title="Precio" color="#000" />
     </GraphContainer>
   );
 };
 
-export default WidgetIpc;
+export default WidgetIpcAllData;
