@@ -9,7 +9,7 @@ const useFetch = (url) => {
   const [response, setResponse] = useState(null);
   const [message, setMessage] = useState(null);
   const [error, setError] = useState(false);
-
+  const [loading, setLoading] = useState(true);
   // Fetch data.
   // You must pass de headers object.
   const getData = useCallback(
@@ -56,20 +56,23 @@ const useFetch = (url) => {
     if (res.status === 404 || res.status === 401) {
       setError(true);
       setMessage("Ocurrió un error al tratar de cargar los datos.");
+      setLoading(false);
     } else if (res.status === 200) {
       setResponse(data);
       setError(false);
       setMessage(null);
+      setLoading(false);
     } else {
       // ...set states.
       setError(true);
       setMessage("Ocurrió un error al tratar de cargar los datos.");
+      setLoading(false);
     }
   };
   if (url === undefined) {
     return null;
   }
-  return { response, error, message };
+  return { response, error, message, loading };
 };
 
 export default useFetch;
