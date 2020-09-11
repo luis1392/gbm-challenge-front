@@ -29,30 +29,18 @@ class GraphIpc extends React.Component {
   };
 
   priceList = () => {
-    let initPrice = 0;
     const prices = this.props.data.map((d) => {
-      if (initPrice === 0 || initPrice !== d.price) {
-        initPrice = d.price;
-        return d.price;
-      } else {
-        return null;
-      }
+      return d.price;
     });
-    var filtered = prices.filter(Boolean);
-    return filtered;
+
+    return prices;
   };
   dateList = () => {
-    let initPrice = 0;
     const labels = this.props.data.map((d) => {
-      if (initPrice === 0 || initPrice !== d.price) {
-        initPrice = d.price;
-        return new Date(d.date);
-      } else {
-        return null;
-      }
+      return new Date(d.date);
     });
-    var filtered = labels.filter(Boolean);
-    return filtered;
+
+    return labels;
   };
 
   createChart = (minPrice) => {

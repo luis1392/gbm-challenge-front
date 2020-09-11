@@ -1,13 +1,23 @@
 import React from "react";
+import { Redirect } from "react-router";
 
 import Layout from "../../components/Layout";
-import { Container } from "reactstrap";
-// import WidgetIpc from "../../components/WidgetIpc";
 
+import isLoggedIn from "../../utils/isLoggedIn";
+import hasRedirect from "../../utils/hasRedirect";
+
+import InitialPage from "../../components/InitialPage";
 const Home = () => {
+  if (isLoggedIn()) {
+    const redirecTo = hasRedirect();
+    if (redirecTo) {
+      return <Redirect to={redirecTo} />;
+    }
+    return <Redirect to="/private" />;
+  }
   return (
     <Layout>
-      <h1>Home page</h1>
+      <InitialPage />
     </Layout>
   );
 };
