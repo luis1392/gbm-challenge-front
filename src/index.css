@@ -8,6 +8,22 @@ body {
   line-height: 1.4;
   font-family: "WorkSans-Regular";
 }
+main {
+  height: 95vh;
+}
+
+.bg-light {
+  background-color: #ffffff !important;
+  border-bottom: 1px solid #000;
+}
+
+.div-link {
+  cursor: pointer;
+}
+.carousel-item > img {
+  width: 100%;
+  height: 650px;
+}
 
 @media (min-width: 768px) {
   .container {
