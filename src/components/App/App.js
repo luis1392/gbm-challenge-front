@@ -13,7 +13,6 @@ import Register from "../../pages/Register";
 import PriceQuotesPrivate from "../../pages/PriceQuotesPrivate";
 
 import NoMatch from "../../pages/NoMatch"; //page 404
-import isLoggedIn from "../../utils/isLoggedIn";
 
 const App = () => {
   return (
